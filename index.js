@@ -1,27 +1,54 @@
 const redux = require('redux');
 const createStore = redux.createStore;
 
-const Buy_Books = "Buy_Books";
+const Buy_Chocolates = "Buy_Chocolates";
+const Buy_Cakes = "Buy_Cakes";
+const Buy_iceCreams = "Buy_iceCreams";
 
 const intialState = {
-    numbersOfBooks: 10,
-    // numbersofCurd: 20
+    numbersOfChocolates: 10,
+    numbersOfCakes: 20,
+    numbersOficeCreams:24
 }
-// Action creater wrapping single function
-function buy_Books() {
+// Action 1
+function buy_Chocolates() {
     return {
-        type: Buy_Books,
-        info: "This is my First Redux Tutorials"
+        type: Buy_Chocolates,
+        payload: "Buy Chocolate form Shop"
     }
 }
+// Action 2
+function buy_Cakes() {
+    return {
+        type: Buy_Cakes,
+        payload: "Buy Cakes form Cake Brakery"
+    }
+}
+// Action 3
+function buy_iceCreams() {
+    return {
+        type: Buy_iceCreams,
+        payload: "Buy Icecreams form Cake Ice shop"
+    }
+}
+
 
 // previousState, action = newStore;
 // Reducer
 const Reducer = (state = intialState, action) => {
     switch (action.type) {
-        case "Buy_Books": return {
+        case "Buy_Chocolates": return {
             ...state,
-            numbersOfBooks: state.numbersOfBooks - 1
+            numbersOfChocolates: state.numbersOfChocolates - 1
+        }
+        // Second Reducer
+        case "Buy_Cakes": return {
+            ...state,
+            numbersOfCakes: state.numbersOfCakes - 1
+        }
+        case "Buy_iceCreams": return {
+            ...state,
+            numbersOficeCreams: state.numbersOficeCreams - 2
         }
         default: return state;
     }
@@ -31,8 +58,12 @@ const Reducer = (state = intialState, action) => {
 const store = createStore(Reducer);
 console.log("intial Store", store.getState());
 const unsubscribe = store.subscribe(() => { console.log('Update state Value', store.getState())});
-store.dispatch(buy_Books());
-store.dispatch(buy_Books());
-store.dispatch(buy_Books());
-store.dispatch(buy_Books());
+store.dispatch(buy_Chocolates());
+store.dispatch(buy_Chocolates());
+store.dispatch(buy_Chocolates());
+store.dispatch(buy_Chocolates());
+store.dispatch(buy_Cakes());
+store.dispatch(buy_Cakes());
+store.dispatch(buy_iceCreams());
+store.dispatch(buy_iceCreams());
 unsubscribe();
